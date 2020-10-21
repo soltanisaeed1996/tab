@@ -1,5 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 
 const SecondPage = ({ route, navigation }) => {
     const { title, itemId, } = route.params;
@@ -21,8 +23,27 @@ const SecondPage = ({ route, navigation }) => {
     //     });
     // }, [navigation]);
     return (
+
+        <Tab.Navigator >
+        <Tab.Screen name='first' component={third}></Tab.Screen>
+            <Tab.Screen name='second' component={fourth}></Tab.Screen>
+        </Tab.Navigator>
+
+
+    )
+}
+const fourth = () => {
+    return (
         <View>
-            <Text>{count}</Text>
+            <Text>fourth</Text>
+            </View>
+    )
+}
+const third = () => {
+    return (
+        <View>
+            <Text>third</Text>
+            {/* <Text>{count}</Text>
             <Text>{JSON.stringify(title)}</Text>
             <Text>{JSON.stringify(itemId)}</Text>
             <Button onPress={() =>
@@ -47,9 +68,8 @@ const SecondPage = ({ route, navigation }) => {
             <Button
                 title="Reset the title"
                 onPress={() => navigation.setOptions({ title: JSON.stringify(route.params.name) })}
-            />
+            /> */}
         </View>
     )
 }
-
 export default SecondPage;

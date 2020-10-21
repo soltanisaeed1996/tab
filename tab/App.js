@@ -14,13 +14,15 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer'
 import FirstPage from './components/FirstPage';
 import SecondPage from './components/SecondPage';
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={
+      <Drawer.Navigator initialRouteName='Home' screenOptions={
         {
           headerStyle: {
             backgroundColor: '#f4511e',
@@ -31,12 +33,12 @@ const App = () => {
           },
         }
       }>
-        <Stack.Screen
+        <Drawer.Screen
           name='Home'
           component={FirstPage}
           initialParams={{ second: 'first value' }}
         />
-        <Stack.Screen
+        <Drawer.Screen
           name='Second'
           component={SecondPage}
           initialParams={{ itemId: 420 }}
@@ -51,7 +53,7 @@ const App = () => {
               />
             )
           })} />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   )
 }
