@@ -6,15 +6,7 @@ const Tab = createBottomTabNavigator();
 const SecondPage = ({ route, navigation }) => {
     const { title, itemId, } = route.params;
     const [count, setCount] = useState(0);
-    useLayoutEffect(() => {
-        navigation.setOptions(
-            {
-                headerRight: () => (
-                    <Button onPress={() => setCount(c => c + 1)} title="Update count" />
-                )
-            }
-        )
-    }, [navigation])
+
     // React.useLayoutEffect(() => {
     //     navigation.setOptions({
     //         headerRight: () => (
@@ -25,7 +17,7 @@ const SecondPage = ({ route, navigation }) => {
     return (
 
         <Tab.Navigator >
-        <Tab.Screen name='first' component={third}></Tab.Screen>
+            <Tab.Screen name='first' component={third}></Tab.Screen>
             <Tab.Screen name='second' component={fourth}></Tab.Screen>
         </Tab.Navigator>
 
@@ -36,7 +28,7 @@ const fourth = () => {
     return (
         <View>
             <Text>fourth</Text>
-            </View>
+        </View>
     )
 }
 const third = () => {

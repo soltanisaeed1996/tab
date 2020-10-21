@@ -17,6 +17,11 @@ const FirstPage = ({ navigation, route }) => {
                 title='secondPage'>
             </Button>
             <Text style={{ backgroundColor: 'red' }}>{second}</Text>
+            <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
+            <Button
+                onPress={() => navigation.navigate('MyModal')}
+                title="Open Modal"
+            />
         </View>
     )
 }

@@ -14,55 +14,33 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer'
-import FirstPage from './components/FirstPage';
-import SecondPage from './components/SecondPage';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerScreen from './components/DrawerScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+function ModalScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
+      <Button onPress={() => navigation.goBack()} title="Dismiss" />
+    </View>
+  );
+}
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName='Home' screenOptions={
-        {
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }
-      }>
-        <Drawer.Screen
-          name='Home'
-          component={FirstPage}
-          initialParams={{ second: 'first value' }}
-        />
-        <Drawer.Screen
-          name='Second'
-          component={SecondPage}
-          initialParams={{ itemId: 420 }}
-          options={({ route }) => ({
-            title: route.params.name,
-            headerRight: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                title="Info"
-                color="#000"
-                style={styles.headerButton}
-              />
-            )
-          })} />
-      </Drawer.Navigator>
+      <Stack.Navigator mode='modal' initialRouteName = 'main'>
+        <Stack.Screen name='main' component={DrawerScreen}
+          >
+        </Stack.Screen>
+        <Stack.Screen name='MyModal' component={ModalScreen} >
+
+
+
+        </Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
-const styles = StyleSheet.create({
-  headerButton:{
-    marginRight:15,
-    padding:15,
-    margin:15,
-    
-  }
-})
+
 export default App;
